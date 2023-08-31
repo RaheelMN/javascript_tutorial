@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+    //factory function returns object
+    function order(n){
+        debugger
+        let name = n
+        function person(){
+            debugger
+            let age =22
+            console.log(`person method this.name ${this.name}`)
+
+        }
+        function closur(){
+            debugger
+            console.log(`closure method name: ${name}`)
+        }
+        return{
+            name,
+            person,
+            closur
+        }
+    }
+    // const or =order('jamal')
+    // or.closur()
+    // or.name = 'khan'
+    // or.person()
+
+    function functionFactory(text){
+        return function(){
+            debugger;
+            document.body.innerText = text
+        }
+    }
+    document.addEventListener('DOMContentLoaded',function(){
+        debugger;
+        let p = functionFactory('bodyyyyy')
+        p()
+        alert('dom loaded')
+        document.querySelector('body').onclick = functionFactory('this is body')
+    })
+</script>
+</html>

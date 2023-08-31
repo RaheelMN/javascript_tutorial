@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // object declaration type 1
+        const person = {name:"raheel",
+                        age: 40,
+                        interest: ["reading","writing","music"],
+                        askme: function(){
+                            document.write("You have come to right place.");
+                        },
+                        myname: function(){
+                            return this.name;
+                        }
+                        }
+        console.log(person);
+        document.write("my name is "+person.myname());
+
+        //object decleration type 2
+        const job = new Object();
+        job.title = "Clerk";
+        job.getTitle = function(){
+            return this.title;
+        }
+        document.write("<br> my job title"+job.getTitle());
+
+    </script>
+</body>
+</html>

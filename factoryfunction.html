@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory function</title>
+</head>
+<body>
+
+</body>
+<script>
+    //in php we have access modifiers which prevents access to object properties and methods
+    //In javascript factory functions are used
+    function person (name){
+        let age = 22
+        return {
+            getName(){
+                return name
+            },
+            greeting(){
+                return `Greeting i am ${name}, how may i help you`
+            }
+        }
+    }
+
+    let p1 = person('raheel')
+
+</script>
+</html>

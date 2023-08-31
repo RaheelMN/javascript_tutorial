@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function onclick1(){
+            alert("You have clicked");
+        }
+        function ondclick1(){
+            alert("You have double clicked");
+        }
+        function oncontextmenu1(){
+            alert("You have right clicked");
+        }
+        function onmouseenter1(){
+            alert("Mouse has entered tag");
+        }
+        const arr = [2,4,5,6];
+        const obj = {name: "raheel"};
+        console.log(obj.name);
+    </script>
+    <p onclick="onclick1()">on click</p>
+    <p ondclick="ondclick1()">on double click</p>
+    <p oncontextmenu="oncontextmenu1()">on right click</p>
+    <p style="display: inline;background-color: greenyellow;" onmouseenter="onmouseenter1()">on mouse hover</p>
+
+
+</body>
+</html>

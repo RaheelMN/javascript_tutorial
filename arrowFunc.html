@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow functions</title>
+</head>
+<body>
+<p>When regular (named function) or anonymous function is created</p>
+<p>It is bound to scope of execution context it is created in. ie in GEC any function defined </p>
+<p>is bind to window object</p>
+<p>If arrow function is created in any scope it is bound to that scope's object</p>
+<p>Things become complicated when methods are used</p>
+<p>if method is created in constructor function then it bound to this which referes to object of class </p>
+<p>Both regular and arrow methods are bound to object of class as we use this.methodname=</p>
+<p>If object leteral is defined in GEC then its regular method will bind to object and </p>
+<p>arrow method will bind to GEC scope ie window object</p>
+<p>If we are in object scope ie in its regular method script then arrow function created there</p>
+<p>will bind to this that is object</p>
+<p>If we are in GEC and add method to class prototype than this referes to windows</p>
+<p>therefore regular method bind to object and arrow method bind to window</p>
+<h2 style="color: red;">Donot use arrow functions in following conditions</h2>
+<p>It cannot be used as constructor function</p>
+<p>It cannot be used in object leterals and class prototype method</p>
+<p>It cannot be used in event listener as it is bound to window</p>
+<p>It can be used in settimeout within local scope it will bind to object</p>
+</body>
+<script>
+    // debugger;
+
+    //Function declaration
+    //named function
+    function sd_show(name){
+        debugger;
+        console.log( `Hello standard function ${name}`)
+    }
+
+    //Function expression
+    //anonymous function stored in variable
+    let v_sd_show = function(name){
+        debugger;
+        console.log( `Hello variable standard function ${name}`)
+
+    }
+
+    //Function expression
+    //Arrow functions are anonymous
+    //rrow function stored in variable
+    let a_show = (name)=> {
+        debugger
+        console.log(`Hello arrow function ${name}`)
+    }
+
+    //Higher order function. Its parameter is another function
+    function highFunc(func){
+
+        func('raheel')
+    }
+
+    //arrow function as callback function
+    // highFunc((name)=>{
+    //     console.log(`Hello anonymous arrow callback function ${name}`)})
+
+    // let anonName = 'khan'
+
+    //arrow function as callback function in setTimeout
+    // setTimeout(()=>{debugger;
+    //     console.log(`Hello anonymous arrow function`)},2000)  
+
+    // sd_show('raheel')
+    // v_sd_show('jamal')
+    // a_show('khan')
+
+    function Person(name){
+        this.name = name
+        this.greeting = function(){
+            debugger;
+            console.log(`Anonymous function: Hello i am ${this.name}`)
+            return this
+        }
+        this.greet = ()=>{
+            debugger
+            console.log(`Arrow function: Hello i am ${this.name}`)
+            return this
+        }
+    }
+
+    Person.prototype.show = function(){
+        debugger;
+        console.log(`prototype function: Hello i am ${this.name}`)
+    }
+
+    Person.prototype.arrow_show = ()=>{
+        debugger;
+        console.log(`arrow prototype function: Hello i am ${this.name}`)
+    }
+
+    const p1 = new Person('raheel')
+    // p1.greet()
+    // p1.greeting()
+
+    //donot use arrow methods in object literals as it will bind to window 
+    var name = 'ibad'
+    const obj ={
+        name: "wasim",
+        greet: ()=>{
+            debugger
+            console.log(`Object leteral. Arrow function this.name: ${this.name}`)
+            return this
+        },
+        greeting: function(){
+            // debugger
+            const fruit={
+                name:"apple",
+                info:function(){debugger
+                console.log(`Object leteral within object scope.regular method this.name: ${this.name}`)
+                },
+                arrowinfo:()=>{debugger
+                console.log(`Object leteral within object scope.arrow method this.name: ${this.name}`)
+                }
+            }
+            fruit.info();
+            fruit.arrowinfo();
+            setTimeout(()=>{
+                // debugger
+                console.log(`settimeout arrow function called in obj this.name: ${this.name}`)
+            },1000)
+            console.log(`Object leteral.anonymous function this.name: ${this.name}`)
+        }
+    }
+
+    function higherorder(callback,obj){
+        debugger
+        callback.call(obj)
+    }
+
+    function callbackFun(){
+        debugger
+        console.log(`call back function bound to object in higherorder function this.name: ${this.name}`)
+    }
+
+    higherorder(callbackFun,{name:'sina'})
+</script>
+<script>
+    
+    // document.addEventListener('DOMContentLoaded',function(){
+
+    //     // alert('DOM tree complete')
+    //     console.log(this)
+    // })
+
+    document.addEventListener('DOMContentLoaded',()=>{
+
+        // alert('DOM tree complete')
+        console.log(this)
+
+        document.body.addEventListener('click',function(){
+            console.log(this)            
+        })
+    })
+</script>
+</html>

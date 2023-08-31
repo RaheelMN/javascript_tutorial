@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //factory script
+    //debugger;
+    function personFactory(name,age){
+        const thiss = {}
+        thiss.name = name
+        thiss.age = age
+        thiss.greetings = function(){
+            return `Hello I am ${thiss.name}`
+        }
+        return thiss
+    }
+
+    function fruitFactory(name,price){
+        //debugger
+        const fruit = {}
+        fruit.name = name
+        fruit.price = price
+        fruit.info = function(){
+            return `${fruit.name} is Rs: ${fruit.price}`
+        }
+        return fruit
+    }
+
+    function candyFactory(name,price){
+        // debugger
+        return {
+            //if parameter and variable have same name then assignment can be removed
+            name:name,
+            price,
+            info(){
+                return `${this.name} is Rs: ${this.price}`               
+            }
+        }
+    }    
+
+    let p1 = personFactory('raheel',33)
+    let f1 = fruitFactory('apple',200)
+    let c1 = candyFactory('choco',100)
+    const name = 'hamid'
+    const course = 'php'
+    let s1 = {}
+    s1.name = name
+    s1.course = course
+    s1.info = function(){
+        return `${this.name} is enrolled in ${this.course}`
+    }
+</script>
+<script>
+    // constructor functions
+    function Jobs(title,pay){
+        this.title = title
+        this.pay = pay
+    }
+
+    Jobs.prototype.info=function(){
+        return `Job ${this.title} has pay ${this.pay}`
+    }
+
+    const j1 = new Jobs('clerk',20000)
+</script>
+</html>

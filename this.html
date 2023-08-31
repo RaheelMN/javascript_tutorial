@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This object</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+     function fruitFactory(name,price){
+
+        console.log(`fruitFactory this: ${this}`)
+        const fruit = {}
+        fruit.name = name
+        fruit.price = price
+        fruit.info = function(){
+            console.log(`fruitFactory method this: ${this}`)
+            return `${fruit.name} is Rs: ${fruit.price}`
+        }
+        return fruit
+    } 
+    function windowcallback(){
+        debugger;
+        console.log(`this is window method called in Jobs object this: ${this}`)
+    }
+    // constructor functions
+    function Jobs(title,pay){
+        // debugger;
+        console.log(`constructor function Jobs this: ${this}`)
+        this.title = title
+        this.pay = pay
+        this.info = ()=>{
+            debugger;
+            console.log(`constructor function Jobs arrow method this: ${this}`)
+
+        }
+        //anonymous function is declared in window memory
+        //this in function points to windows. To use object properties in function.
+        //Function has to bind to object using bind method
+        setTimeout(function(){
+            debugger;
+            console.log(`settimeout anon func binded to Jobs object. this.title ${this.title}`)}.bind(this),1000)
+
+        //anonymous arrow function is declared in object memory
+        //this in function points to object
+        setTimeout(()=>{
+            debugger;
+            console.log(`settimeout anon arrow function in Jobs object. this.title ${this.title}`)},2000)
+
+
+        // setTimeout(windowcallback,1000)
+    } 
+    Jobs.prototype.infos=function(){
+
+        console.log(`constructor function Jobs method this: ${this}`)
+        return `Job ${this.title} has pay ${this.pay}`
+    }
+
+    function greeting(){
+        debugger;
+        console.log(`greetings function this.aname: ${this.aname}`)
+
+    }
+
+    function greet(name){
+        debugger;
+        console.log(`greetings functio this:${name} color is ${this.color}`)
+
+    }    
+
+    const obj = {
+        color:'blue',
+        greeting
+    }
+
+    const bobj = {
+        color:'blue',
+    }
+    debugger;
+    // console.log(`main this: ${this}`)
+    // greeting();
+    // const f1 =  fruitFactory('apple',300);
+    const j1 = new Jobs('Engineer',130000)
+    // j1.info();
+    // j1.infos();
+    // obj.greeting();
+
+
+    //binding a function to object so in it this refers to object
+    // let bgreet = greet.bind(bobj)
+    // bgreet('hamid')
+    // greeting()
+
+    //binding function one time only
+    // greet.bind(bobj,'hamid')()
+
+    //call function works as bind
+    // greet.call(bobj,'hamid')
+    // greet('jamal')
+    // var aname = 'window'
+    // function order(){
+    //     debugger;
+    //     this.greeting()
+    //     console.log(`Order accepted: this.wname ${this.aname}`)
+    //     console.log(`Order accepted: wname ${aname}`)
+    //     setTimeout(()=>{
+
+    //         console.log(`Production started: wname ${aname}`)
+    //     },1000)
+    // }
+    // order()
+
+</script>
+</html>

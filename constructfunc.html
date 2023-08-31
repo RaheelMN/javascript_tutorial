@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //constructor function. Start with capital letter by convention
+    function Person(n,a){
+        // debugger;
+        //javascript automatically creates following object: const this={}
+        this.name = n
+        this.age = a
+        //javascript automatically create following statement: return this
+        this.greetings = function(){
+                return `hello i am ${this.name}`
+        }
+        this.getName = ()=>{ return this.name}
+    }
+    Person.prototype.goodbye=function(){return `So long my friend ${this.name}`}
+    let p1 = new Person('bilal',33)
+
+    function SuperElement(type,text){
+        this.el = document.createElement(type)
+        document.body.append(this.el)
+        this.el.innerText = text
+        this.el.addEventListener('click',()=>{ console.log(text)})
+    }
+    // const div1 = new SuperElement('div','hello')
+    
+    const arrays = ['first div','second div','third div']
+    const divs = arrays.map(item=>{
+        return new SuperElement('div',item)
+    })
+</script>
+</html>

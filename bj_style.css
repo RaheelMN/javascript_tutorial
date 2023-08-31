@@ -1,0 +1,25 @@
+body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    font-size: bold;
+    color: white;
+    background-color: rgb(59, 134, 59);
+}
+
+h1{
+    color: goldenrod;
+}
+
+#message{
+    font-style: italic;
+}
+
+#play-btn{
+    color: #527e32;
+    background-color: goldenrod;
+    padding: 4px 28px;
+    border-radius: 3px;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+    // let returnEmpty=()=>{
+    //     console.log('This function return nothing')
+    // }
+
+    // class person {
+    //     constructor(name,age){
+    //         this.name = name;
+    //         this.age =age;
+    //     }
+    //     myfunc(){
+    //         return `${this.name} you have clicked`
+    //     }
+    // }
+
+    // let p1 = new person('raheel',40);
+    // console.log(p1.name)
+    // console.log(p1.myfunc())
+    // p1.hobby = ['reading','writing']
+    // console.log(p1.hobby)
+    // person.prototype.myfunc = function(){
+    //     return 'new talking function'
+    // }
+    // console.log(p1.myfunc())
+</script>
+<script>
+    //creating class person with parameters
+    // function person(name,age){ 
+
+    //     //this is constructor 
+    //     //class properties 
+    //     this.name = name;
+    //     this.age =age;  
+    //     this.city = 'peshawar'; //default property
+    //     //class (method)property using constructor this. It will be property of object/instance
+    //     this.greeting = function(){
+    //         return 'hello how are you'
+    //     }
+    // }
+    
+    // //class method stored in prototype. It will be method of class person
+    // person.prototype.myfunc = function(){
+    //     return `${this.name} is my function`
+    // }
+
+    // let p1 = new person('raheel',30);
+    // console.log(p1.myfunc())
+    // let p2 = new person('ammal',22)
+    // p2.greeting = function(){
+    //     return 'method changed only for p2 not for p1'
+    // }
+</script>
+<script>
+    //creating class using constructor function . Its properties and methods
+    function person(name,age){
+        //*this* is constructor word to initialize properties of class
+        //properties are attached to object/instance that means change in property value
+        //doesnot effect other object
+        this.name = name
+        this.age = age 
+        this.city = 'peshawar' //default city
+    }
+
+    //define methods of class person in prototype method
+    //methods that are attached to prototype belong to class therefore change in method
+    //definition effect all instances
+    person.prototype.getName=function(){
+        return `My name is ${this.name}`   
+    }
+    person.prototype.getAge=function(){
+        return  `My age is ${this.age}`
+    }
+    person.prototype.getCity=function(){
+        return  `I belong to ${this.city}`
+    }
+    
+    //class declaration using standard way
+    //class extends 
+    class student extends person{
+        constructor(name,age,course){
+            super(name,age)
+            this.course = course
+        }
+        getCourse(){
+           return `I have ${this.course}` 
+        }
+    }
+    p1 = new person('raheel',40)
+    p2 = new person('ali',35)
+    p3=new student('hamid',22,'php')
+
+    //create object using object instance
+    let fruits={
+        name:'apple',
+        color:'red'
+    }
+
+    let a1 = Object.create(fruits);
+    a1.weight =2;
+
+    let colors = ['blue','green','red']
+    let mcolors = colors.map(value=>{return `${value}s`})
+</script>
+</html>
