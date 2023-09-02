@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHTTPRequest callback</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    callback function is function that is passed as an argument
+    <table>
+        <thead>
+            <th>S.NO</th>
+            <th>Name</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+
+
+
+        const xhr = new XMLHttpRequest()
+        const url = "./fetchdata.php"
+        const method = 'GET'
+        try {
+            xhr.onload = xhrCallback
+            xhr.onerror = (error)=>{
+                // debugger
+                console.log('xhr error during request sent')
+            }
+            xhr.open(method,url,true)
+            xhr.send(null)
+        } catch (error) {
+            alert(`Error: ${error}`)
+        }
+
+        function xhrCallback(){
+            if(xhr.status === 200){
+                displayTable(xhr.response)
+            }else {
+                console.log(xhr.status)
+            }
+        }
+        function displayTable(json){
+            // debugger
+            const data = JSON.parse(json)
+            let records = ''
+            data.forEach((value,key,data) => {
+                // debugger
+                records +=  `<tr>
+                                <td>${key+1}</td>
+                                <td>${value.ct_name}</td>
+                            </tr>`
+
+            });
+            document.querySelector('tbody').innerHTML = records   
+        }
+
+    })
+</script>
+</html>

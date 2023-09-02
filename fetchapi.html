@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API</title>
+</head>
+<body>
+    <p>Fetch API by default creates an Request object and URL is given as parameter   </p>
+    <p>It create a Promise and return it to variable in expression</p>
+    <p>We use Async and await to wait for response</p>
+</body>
+<script>
+    function display(data){
+        const body = document.body
+        body.innerHTML = '<b> This is body <b>'        
+    }
+
+    async function getData(){
+        try {
+            const url = './fetchSingleRecord.php'
+            const response = await fetch(url,{
+                method:'POST',
+                headers:{
+                    'Accept':'application/json',
+                    'Content-Type':'application/json;charset=utf-8'
+                },
+                body:JSON.stringify({id:'1'})
+            })  
+            // console.log(response) 
+            const data = await response.json()
+            // console.log(data)
+            if(response.status === 200){
+                console.log(`Success: ${data}`)
+            }else{
+                console.log(`Server Error: ${data.error.message}`)
+            }    
+            
+        } catch (error) {
+            console.log(`Fetch Error: ${error}`)
+        }
+    }
+    getData()
+</script>
+</html>

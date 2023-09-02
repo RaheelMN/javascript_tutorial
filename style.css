@@ -6,3 +6,23 @@ body{
     /* font-family: 'Qwitcher Grypen'; */
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+table{
+    margin: 10px auto;
+    width: 60%;
+    border-collapse: collapse;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+thead{
+    color: aliceblue;
+    background-color: rgb(149, 76, 76);
+}
+
+th,td{
+    padding: 10px 0px;
+}
+tr{
+    border: 2px solid grey;
+}

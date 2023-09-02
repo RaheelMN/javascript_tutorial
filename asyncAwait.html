@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async Await</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+
+    function jobs(){
+        console.log(`jobs function`)
+        return new Promise(resolve =>{ 
+            console.log(`callback arrow function that receive resolve as argument`)
+            setTimeout(()=>{resolve('resovled to 44')},1000)
+        })
+    }
+
+    async function getData(){
+        const obj = await jobs()
+        console.log(obj)
+    }
+
+    getData()
+
+
+    let istrue = false
+    function getWheather(){
+        return new Promise(function(resolve,reject){
+
+            console.log('getWheather function promise')
+
+            //in absense of xhr,settimeout is used to wait 
+            setTimeout(()=>{
+                if(istrue){
+                    resolve('rains')
+                }else{
+                    reject('you bloody')
+                }
+            },1000)
+        })
+    }
+    function getWheatherIcon(whether){
+        return new Promise(function(resolve,reject){
+
+            console.log('getWheathericon function promise')
+
+            //in absense of xhr to make it wait use settimeout
+            setTimeout(()=>{
+                switch (whether){
+                    case 'rain': resolve('It is raining');break
+                    case 'cloud': resolve('It is cloudy');break
+                    case 'sun': resolve('Sun is shining');break
+                    default: reject('Cannot describe whether')
+                }
+            },1000)            
+        })
+    }    
+    // getWheather().then(getWheatherIcon)
+    //              .then(onSuccess)
+    //              .catch(function(error){console.log(`Sorry ${error}`)})
+    //                 .finally(function(){console.log('Bye')})
+
+    async function getData(){
+        let data1 = await getWheather()
+    }
+
+</script>
+</html>

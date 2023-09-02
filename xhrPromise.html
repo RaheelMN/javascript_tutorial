@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XHR Promise</title>
+</head>
+<body>
+    <h2>Promise</h2>
+    Promise is an asynchronous object. It tell calling function that when data arrive it will
+    <p>return it.</p>
+    <p>In parameter it takes callback that has two parameters resolve and reject</p>
+    <p>When promise is created it is in pending state</p>
+    <p>When response to promise object arrive it uses callback function </p>
+    <p>When promise is successful resolve function is called in callback function</p>
+    <p>When promise fails reject function is called in callback function</p>
+    <p>Resolve function is pointer to then method first argument that means data in resovle is passed</p>
+    <p>to callback function in then method first argument</p>
+    <p>Reject function in promise is pionter to either then method second argument or catch method</p>
+    <p></p>
+</body>
+<script>
+    //factory function returns object
+    let istrue = false
+    function getWheather(){
+        return new Promise(function(resolve,reject){
+
+            console.log('getWheather function promise')
+
+            //in absense of xhr,settimeout is used to wait 
+            setTimeout(()=>{
+                if(istrue){
+                    resolve('rains')
+                }else{
+                    reject('you bloody')
+                }
+            },1000)
+        })
+    }
+    function getWheatherIcon(whether){
+        return new Promise(function(resolve,reject){
+
+            console.log('getWheathericon function promise')
+
+            //in absense of xhr to make it wait use settimeout
+            setTimeout(()=>{
+                switch (whether){
+                    case 'rain': resolve('It is raining');break
+                    case 'cloud': resolve('It is cloudy');break
+                    case 'sun': resolve('Sun is shining');break
+                    default: reject('Cannot describe whether')
+                }
+            },1000)            
+        })
+    }    
+    getWheather().then(getWheatherIcon)
+                 .then(onSuccess)
+                 .catch(function(error){console.log(`Sorry ${error}`)})
+                    .finally(function(){console.log('Bye')})
+
+
+    function onSuccess(data){
+        console.log(`${data}`)
+    }
+    function onError(error){
+        console.log(`${error}`)
+    } 
+    
+</script>
+</html>
